@@ -10,7 +10,7 @@ use Rebing\GraphQL\Support\Query;
 
 class ProjectsQuery extends Query {
     protected $attributes = [
-        'name' => 'Project',
+        'name' => 'Projects',
         'description' => 'Retrieves projects',
     ];
 
@@ -21,7 +21,7 @@ class ProjectsQuery extends Query {
     }
 
     public function type(): Type {
-        return Type::nonNull(Type::listOf(Type::nonNull(GraphQL::type('Project'))));
+        return Type::listOf(GraphQL::type('Project'));
     }
     // public function type(): Type
     // {
