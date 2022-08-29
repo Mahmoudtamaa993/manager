@@ -10,7 +10,7 @@ use Rebing\GraphQL\Support\Query;
 
 class ProjectsQuery extends Query {
     protected $attributes = [
-        'name' => 'Projects',
+        'name' => 'projects',
         'description' => 'Retrieves projects',
     ];
 
