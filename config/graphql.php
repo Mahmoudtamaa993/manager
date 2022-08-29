@@ -76,13 +76,19 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
+                App\GraphQL\Query\UsersQuery::class,
+                App\GraphQL\Query\ProjectsQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
+                App\GraphQL\Mutation\CreateUserMutation::class,
             ],
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
+                App\GraphQL\Type\UserType::class,
+                //App\GraphQL\Type\ProjectType::class,
+                //'project' => App\GraphQL\Type\ProjectType::class,
             ],
 
             // Laravel HTTP middleware
@@ -109,6 +115,7 @@ return [
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
+       'Project' => App\GraphQL\Type\ProjectType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
