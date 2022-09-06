@@ -20,7 +20,7 @@ export default {
     },
     created() {
         axios.post('/graphql', {    //does't matter what type of http request we make becouse we have not restful API
-            query: '{projects{id,title,description}}'  // make our request
+            query: this.$apiQueries.dashboard   // make our request
         }).then(res => { // if we get data back from the server then we can have data property call projects should the same response from the server
             this.projects = res.data.data.projects;
         });
