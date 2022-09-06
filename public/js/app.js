@@ -1732,7 +1732,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/graphql', {
       //does't matter what type of http request we make becouse we have not restful API
-      query: '{projects{id,title,description}}' // make our request
+      query: this.$apiQueries.dashboard // make our request
 
     }).then(function (res) {
       // if we get data back from the server then we can have data property call projects should the same response from the server
@@ -1765,7 +1765,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/graphql', {
-      query: "{\n                    projects(projectId: ".concat(this.$route.params.id, ") {\n                        id,\n                        title,\n                        description\n                    }\n                }")
+      query: this.$apiQueries.singleProject,
+      variables: {
+        projectIf: this.$route.params.id
+      }
     }).then(function (res) {
       _this.project = res.data.data.projects[0];
     });
@@ -34797,6 +34800,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _queries__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./queries */ "./resources/js/queries.js");
+
 
 
 
@@ -35118,6 +35123,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_Project_vue_vue_type_template_id_36e447c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/queries.js":
+/*!*********************************!*\
+  !*** ./resources/js/queries.js ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$apiQueries = {
+  dashboard: '{projects{id,title,description}}',
+  singleProject: "query fetchSingleProject($projectId:Int){\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description\n        }\n    }"
+};
 
 /***/ }),
 

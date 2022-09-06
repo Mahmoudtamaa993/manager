@@ -86,9 +86,7 @@ return [
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
-                App\GraphQL\Type\UserType::class,
-                //App\GraphQL\Type\ProjectType::class,
-                App\GraphQL\Type\ProjectType::class,
+
             ],
 
             // Laravel HTTP middleware
@@ -116,6 +114,10 @@ return [
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
       //  'Project' => App\GraphQL\Type\ProjectType::class,
+      App\GraphQL\Type\UserType::class,
+      //App\GraphQL\Type\ProjectType::class,
+      App\GraphQL\Type\ProjectType::class,
+      App\GraphQL\Type\TaskType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

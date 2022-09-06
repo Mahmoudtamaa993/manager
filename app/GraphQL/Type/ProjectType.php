@@ -28,12 +28,15 @@ class ProjectType extends GraphQLType {
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The projectj',
             ],
-            // 'manager' => [
-            //     'type' => Type::nonNull(Type::int())
-            // ],
-            // 'tasks' => [
-            //     'type' => Type::nonNull(Type::int())
-            // ],
+            'manager' => [
+                'type' => Type::nonNull(GraphQL::type('User'))
+            ],
+            'tasks' => [
+                'type' => Type::listOf(GraphQL::type('Task'))
+            ],
+            'users' => [
+                'type' => Type::listOf(GraphQL::type('User'))
+            ],
         ];
     }
 
