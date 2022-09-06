@@ -29,10 +29,10 @@ class TaskType extends GraphQLType {
                 'type' => Type::nonNull(Type::string())
             ],
             'project' => [
-                'type' => Type::nonNull(QraphQL::type('Project'))
+                'type' => Type::nonNull(GraphQL::type('Project'))
             ],
             'user' => [
-                'type' => Type::nonNull(QraphQL::type('User'))
+                'type' => Type::nonNull(GraphQL::type('User'))
             ],
         ];
     }
