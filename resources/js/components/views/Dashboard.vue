@@ -13,15 +13,15 @@ import axios from 'axios';
 import ProjectCard from './../ProjectCard.vue';
 export default {
     components: {ProjectCard},
-    data() {
+    data() { // define the data property
         return {
             projects: []
         };
     },
     created() {
-        axios.post('/graphql', {
-            query: '{projects{id,title,description}}'
-        }).then(res => {
+        axios.post('/graphql', {    //does't matter what type of http request we make becouse we have not restful API
+            query: '{projects{id,title,description}}'  // make our request
+        }).then(res => { // if we get data back from the server then we can have data property call projects should the same response from the server
             this.projects = res.data.data.projects;
         });
     }

@@ -15,7 +15,7 @@ class ProjectsQuery extends Query {
     ];
 
     public function args(): array {
-        return [
+        return [ // return Array that descripe 
             'projectId' => [ 'type' => Type::int()]
         ];
     }
