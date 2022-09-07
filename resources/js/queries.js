@@ -1,20 +1,61 @@
 import Vue from 'vue';
-Vue.prototype.$apiQueries ={
-    dashboard:'{projects{id,title,description}}',
-    singleProject:`query fetchSingleProject($projectId:Int){
+import axios from 'axios';
+
+// Vue.prototype.$apiQueries ={
+//     dashboard:'{projects{id,title,description}}',
+//     singleProject:`query fetchSingleProject($projectId:Int){
+//         projects(projectId: $projectId) {
+//             id,
+//             title,
+//             description,
+//             tasks{
+//                 id,
+//                 title,
+//                 description,
+//                 statusCode,
+//                 user{
+//                     name
+//                 }
+//             }
+//         }
+//     }`
+// };
+
+let queries = {
+    dashboard: '{projects{id,title,description}}',
+    singleProject: `query fetchSingleProject($projectId: Int) {
         projects(projectId: $projectId) {
             id,
             title,
             description,
-            tasks{
+            tasks {
                 id,
                 title,
                 description,
                 statusCode,
-                user{
+                user {
                     name
                 }
             }
         }
     }`
+};
+
+Vue.prototype.$query = function(queryName, queryVariables) {
+    let options = {
+        url: '/graphql',
+        method: 'POST',
+        data: {
+            query: queries[queryName]
+        }
+    };
+
+    if (queryVariables) {
+        options.data.variables = queryVariables;
+    }
+
+    // api-token
+
+
+    return axios(options);
 };
