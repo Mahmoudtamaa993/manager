@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submitForm">
         <div v-if="errorMessage" class="alert alert-danger">
-
+            {{errorMessage}}
         </div>
         <div class="form-group">
             <label for="email">Email</label>
@@ -36,6 +36,13 @@ export default {
                 email: this.email,
                 password: this.password
             }).then(res => {
+                let token = res.data.data.Login;
+                if (token) {
+                    sessionStorage.setItem('api-token', token);
+                    this.$router.push('/');
+                } else {
+                    this.errorMessage = 'The email address and/or password is incorrect.';
+                }
             });
         }
     }

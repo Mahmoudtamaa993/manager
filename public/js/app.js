@@ -1798,10 +1798,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
+      var _this = this;
+
       this.$query('login', {
         email: this.email,
         password: this.password
-      }).then(function (res) {});
+      }).then(function (res) {
+        var token = res.data.data.Login;
+
+        if (token) {
+          sessionStorage.setItem('api-token', token);
+
+          _this.$router.push('/');
+        } else {
+          _this.errorMessage = 'The email address and/or password is incorrect.';
+        }
+      });
     }
   }
 });
@@ -2047,7 +2059,7 @@ var render = function render() {
     }
   }, [_vm.errorMessage ? _c("div", {
     staticClass: "alert alert-danger"
-  }) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n        " + _vm._s(_vm.errorMessage) + "\n    ")]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
@@ -35519,7 +35531,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var queries = {
   dashboard: '{projects{id,title,description}}',
-  singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                title,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }"
+  singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                title,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }",
+  login: "mutation LoginUser($email: String, $password: String) {\n        Login(email: $email, password: $password)\n    }"
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryName, queryVariables) {
