@@ -8,7 +8,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Support\Facades\Hash;
-use Rebing\GraphQL\Support\Mutations;
+use Rebing\GraphQL\Support\Mutation;
 
 class CreateUserMutation extends Mutation
 {
