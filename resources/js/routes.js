@@ -4,5 +4,5 @@ import Login  from './components/views/Login.vue';
 export default [
     {path: '/', component: Dashboard},
     {path: '/project/:id', component: Project},
-    {path: '/login', component: Login}
+    {path: '/login', component: Login, meta : {requiresAuth:false}}
 ];

@@ -78,6 +78,7 @@ return [
                 // ExampleQuery::class,
                 App\GraphQL\Query\UsersQuery::class,
                 App\GraphQL\Query\ProjectsQuery::class,
+                App\GraphQL\Query\CheckAuthQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,

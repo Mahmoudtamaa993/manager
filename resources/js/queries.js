@@ -41,6 +41,9 @@ let queries = {
     }`,
     login: `mutation LoginUser($email: String, $password: String) {
         Login(email: $email, password: $password)
+    }`,
+    check:`guery CheckUserAuth{
+        UserAuthQuery
     }`
 };
 

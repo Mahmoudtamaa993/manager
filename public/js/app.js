@@ -35044,6 +35044,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (m) {
+    return m.meta.requiresAuth === false;
+  })) {
+    next();
+    return;
+  }
+
+  vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query('check').then(function (res) {
+    next();
+  })["catch"](function (err) {
+    router.push('/login');
+  });
+});
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: router,
   render: function render(h) {
@@ -35532,7 +35546,8 @@ __webpack_require__.r(__webpack_exports__);
 var queries = {
   dashboard: '{projects{id,title,description}}',
   singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                title,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }",
-  login: "mutation LoginUser($email: String, $password: String) {\n        Login(email: $email, password: $password)\n    }"
+  login: "mutation LoginUser($email: String, $password: String) {\n        Login(email: $email, password: $password)\n    }",
+  check: "guery CheckUserAuth{\n        UserAuthQuery\n    }"
 };
 var guestQueries = ['login'];
 
@@ -35597,7 +35612,10 @@ __webpack_require__.r(__webpack_exports__);
   component: _components_views_Project_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/login',
-  component: _components_views_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _components_views_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    requiresAuth: false
+  }
 }]);
 
 /***/ }),
