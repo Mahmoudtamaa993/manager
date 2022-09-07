@@ -16,7 +16,7 @@ class ProjectsQuery extends Query {
 
     public function args(): array {
         return [ // return Array that descripe 
-            'projectId' => [ 'type' => Type::int()]
+            'projectId' => [ 'type' => Type::int()] // Fix projectId and ProjectIf in Project Vue and here 
         ];
     }
 
