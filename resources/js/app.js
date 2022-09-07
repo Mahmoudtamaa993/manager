@@ -20,7 +20,8 @@ router.beforeEach((to,from, next)=>{
     }).catch(err=>{
         router.push('/login');
     });
-})
+});
+Vue.prototype.$appEvents = new Vue();
 
 new Vue({
     router,

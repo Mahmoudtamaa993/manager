@@ -11,8 +11,21 @@
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a href="" class="nav-link">Dashboard</a></li>                       
+                    <ul v-if="loggedIn" class="navbar-nav">
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/'">Dashboard</router-link>
+                        </li>     
+                        <li class="nav-item">
+                            <a href="#" @click.prevent="logoff" class="nav-link">Logout</a>
+                        </li>                   
+                    </ul>
+                    <ul v-else class="navbar-nav">
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/login'">Login</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/Register'">Register</router-link>
+                        </li>                   
                     </ul>
                 </div>
 
@@ -29,3 +42,30 @@
         </section>
     </div>
 </template>
+<script>
+export default{
+    data(){
+        return {
+            loggedIn:false
+        };
+    },
+    created(){
+        this.$appEvents.$on('log-on',()=>{
+            this.loggedIn =true;
+        })
+
+        if (sessionStorage.getItem('api-token')){
+            this.loggedIn=true;
+        }
+    },
+    methods:{
+        logoff(){
+            sessionStorage.removeItem('api-token');
+            this.loggedIn = false;
+            this.$router.push('/login');
+        }
+
+    }
+
+}
+</script>

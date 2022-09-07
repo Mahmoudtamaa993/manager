@@ -39,6 +39,7 @@ export default {
                 let token = res.data.data.Login;
                 if (token) {
                     sessionStorage.setItem('api-token', token);
+                    this.$appEvents.$emit('log-on');
                     this.$router.push('/');
                 } else {
                     this.errorMessage = 'The email address and/or password is incorrect.';
