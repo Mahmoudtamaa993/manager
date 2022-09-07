@@ -82,7 +82,7 @@ return [
             'mutation' => [
                 // ExampleMutation::class,
                 App\GraphQL\Mutations\CreateUserMutation::class,
-                App\GraphQL\Mutations\LoginMutation::class,
+                
 
             ],
             // The types only available in this schema
@@ -92,13 +92,18 @@ return [
             ],
 
             // Laravel HTTP middleware
-            'middleware' => null,
+            'middleware' => ['auth'],
 
             // Which HTTP methods to support; must be given in UPPERCASE!
             'method' => ['GET', 'POST'],
 
             // An array of middlewares, overrides the global ones
             'execution_middleware' => null,
+        ],
+        'guest' => [
+            'mutation' =>[
+                App\GraphQL\Mutations\LoginMutation::class,
+            ],
         ],
     ],
 

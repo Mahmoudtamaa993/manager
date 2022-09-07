@@ -44,9 +44,20 @@ let queries = {
     }`
 };
 
+let guestQueries=[
+    'login'
+];
+function getApiUrl(queryName){
+    let segment ='';
+    if (guestQueries.some(q => q === queryName)){
+        segment ='/guest';
+    }
+    return `/graphql${segment}`;
+}
+
 Vue.prototype.$query = function(queryName, queryVariables) {
     let options = {
-        url: '/graphql',
+        url: getApiUrl(queryName),
         method: 'POST',
         data: {
             query: queries[queryName]
@@ -57,7 +68,12 @@ Vue.prototype.$query = function(queryName, queryVariables) {
         options.data.variables = queryVariables;
     }
 
-    // api-token
+    let token = sessionStorage.getItem('api-token');
+    if(token){
+        options.headers ={
+            Authorization :`Bearer ${token}`
+        };
+    }
 
 
     return axios(options);
