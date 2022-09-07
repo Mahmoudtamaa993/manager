@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Mutation;
+namespace App\GraphQL\Mutations;
 
 use Closure;
 use App\Models\User;
@@ -8,7 +8,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Support\Facades\Hash;
-use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Mutations;
 
 class CreateUserMutation extends Mutation
 {
