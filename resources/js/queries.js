@@ -42,13 +42,17 @@ let queries = {
     login: `mutation LoginUser($email: String, $password: String) {
         Login(email: $email, password: $password)
     }`,
-    check:`guery CheckUserAuth{
-        UserAuthQuery
-    }`
+    check:`query CheckUserAuth{
+        UserAuthQuery    
+    }`,
+    register: `mutation RegisterUser($displayName: String, $email: String, $password: String) {
+        RegisterUser(displayName: $displayName, email: $email, password: $password)
+    }`,
 };
 
 let guestQueries=[
-    'login'
+    'login',
+    'register'
 ];
 function getApiUrl(queryName){
     let segment ='';

@@ -104,6 +104,7 @@ return [
         'guest' => [
             'mutation' =>[
                 App\GraphQL\Mutations\LoginMutation::class,
+                App\GraphQL\Mutations\RegisterMutation::class,
             ],
         ],
     ],
