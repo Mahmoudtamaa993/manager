@@ -9,7 +9,6 @@ use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Str;
 use Rebing\GraphQL\Support\Mutation;
 
-
 class RegisterMutation extends Mutation {
     protected $attributes = [
         'name' => 'RegisterUser',
@@ -29,15 +28,11 @@ class RegisterMutation extends Mutation {
     }
 
     public function resolve($root, $args) {
-        $credentials = [
-            'email' => $args['email'],
-            'password' => $args['password'],
-        ];
         $user = User::create([
             'name' => $args['displayName'],
             'email' => $args['email'],
             'password' => bcrypt($args['password']),
-            'api_token' => Str::random(60),
+            'api_token' => Str::random(60)
         ]);
 
         return $user->api_token;
