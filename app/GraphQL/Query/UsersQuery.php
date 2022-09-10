@@ -12,46 +12,16 @@ use Rebing\GraphQL\Support\Query;
 class UsersQuery extends Query
 {
     protected $attributes = [
-        'name' => 'users',
+        'name' => 'UsersQuery',
     ];
 
     public function type(): Type
     {
-        return Type::nonNull(Type::listOf(Type::nonNull(GraphQL::type('User'))));
-    }
-
-    public function args(): array
-    {
-        return [
-            'id' => [
-                'name' => 'id',
-                'type' => Type::int(),
-            ],
-            'name' => [
-                'name' => 'name',
-                'type' => Type::string(),
-            ],
-            'email' => [
-                'name' => 'email',
-                'type' => Type::string(),
-            ]
-        ];
+        return Type::listOf(GraphQL::type('User'));
     }
 
     public function resolve($root, $args)
     {
-        if (isset($args['id'])) {
-            return User::whereId($args['id'])->get();
-        }
-
-        if (isset($args['name'])) {
-            return User::whereName($args['name'])->get();
-        }
-
-        if (isset($args['email'])) {
-            return User::whereEmail($args['email'])->get();
-        }
-
         return User::all();
     }
 }

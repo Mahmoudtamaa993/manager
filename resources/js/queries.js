@@ -48,6 +48,15 @@ let queries = {
     register: `mutation RegisterUser($displayName: String, $email: String, $password: String) {
         RegisterUser(displayName: $displayName, email: $email, password: $password)
     }`,
+    users:` query GetUser{
+        users{
+            id,
+            name
+        }
+    }`,
+    saveProject: `mutation SaveProject($project: projectInputs) {
+        saveProject(project: $project)
+    }`
 };
 
 let guestQueries=[

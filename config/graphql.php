@@ -76,13 +76,14 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
-                App\GraphQL\Query\UsersQuery::class,
+                'users' => App\GraphQL\Query\UsersQuery::class,
                 App\GraphQL\Query\ProjectsQuery::class,
                 App\GraphQL\Query\CheckAuthQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
                 App\GraphQL\Mutations\CreateUserMutation::class,
+               'saveProject' => App\GraphQL\Mutations\SaveProjectMutation::class,
                 
 
             ],
@@ -127,6 +128,9 @@ return [
       //App\GraphQL\Type\ProjectType::class,
       App\GraphQL\Type\ProjectType::class,
       App\GraphQL\Type\TaskType::class,
+      App\GraphQL\Inputs\ProjectInput::class,
+      'taskInput' => App\GraphQL\Inputs\TaskInput::class,
+
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
