@@ -13,8 +13,8 @@ class TaskInput extends GraphQLType {
         'name' => 'TaskInput',
         'description' => 'A task input',
     ];
-
-    public function fields() {
+    
+    public function fields(): array {
         return [
             'id' => [
                 'type' => Type::int(),

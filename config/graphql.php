@@ -128,8 +128,9 @@ return [
       //App\GraphQL\Type\ProjectType::class,
       App\GraphQL\Type\ProjectType::class,
       App\GraphQL\Type\TaskType::class,
-      App\GraphQL\Inputs\ProjectInput::class,
       'taskInput' => App\GraphQL\Inputs\TaskInput::class,
+      'ProjectInput' => App\GraphQL\Inputs\ProjectInput::class,
+      
 
     ],
 

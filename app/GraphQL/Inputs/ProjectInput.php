@@ -11,10 +11,10 @@ class ProjectInput extends GraphQLType {
     protected $inputObject = true;
 
     protected $attributes = [
-        'name' => 'projectInputs',
+        'name' => 'ProjectInput',
     ];
 
-    public function fields() {
+    public function fields(): array {
         return [
             'id' => [
                 'type' => Type::int(),

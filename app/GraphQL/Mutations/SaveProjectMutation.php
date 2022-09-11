@@ -17,7 +17,7 @@ class SaveProjectMutation extends Mutation {
 
     public function args(): array {
         return [
-            'project' => [ 'type' => GraphQL::type('projectInputs')],
+            'project' => [ 'type' => GraphQL::type('ProjectInput')],
         ];
     }
 
@@ -43,8 +43,9 @@ class SaveProjectMutation extends Mutation {
                 'status_code' => $task['statusCode'],
             ]);
         }
-
+        $project-> user()->saveMany($users);
+        return '';
     }
-
+    
 
 }
